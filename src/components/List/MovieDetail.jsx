@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
+
 function MovieDetail(  ) {
 
     let { id } = useParams();
@@ -21,13 +22,11 @@ function MovieDetail(  ) {
 
   return (
           <div>
-
             <h1 key={movie.id}>{movie.title}</h1>
             <img src={baseURL + movie.poster_path} alt='poster-path' />
             <p>{movie.vote_count}</p>
             <p>{movie.overview}</p>
             <p>{movie.release_date}</p> 
-
           </div>
   )
 }

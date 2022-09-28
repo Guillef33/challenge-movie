@@ -10,7 +10,7 @@ import MovieCard from './MovieCard';
 
 function ListContainer( { movies }) {
 
-  const baseURL = "https://image.tmdb.org/t/p/w500/"
+  const baseURL = "https://image.tmdb.org/t/p/w300/"
 
   let id = useParams();
 
