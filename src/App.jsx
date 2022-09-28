@@ -15,7 +15,7 @@ function App() {
     <Routes>
       <Route path='/' element={<Login/>} />
       <Route path='/listado' element={<ListContainer/>} />
-      <Route path='/listado:id' element={<MovieDetail/>} />
+      <Route path='/listado/:id' element={<MovieDetail/>} />
 
     </Routes>
     </BrowserRouter>

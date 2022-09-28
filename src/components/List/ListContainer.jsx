@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import './List.css'
 
@@ -39,6 +39,9 @@ useEffect ( () => {
 
   const baseURL = "https://image.tmdb.org/t/p/w500/"
 
+      let id = useParams();
+
+
   return (
 
     <>
@@ -59,7 +62,8 @@ useEffect ( () => {
             <img src={baseURL + pelicula.poster_path} alt='poster-path' />
             <p>{pelicula.vote_count}</p>
             <p>{pelicula.overview}</p>
-                        <p>{pelicula.release_date}</p>
+            <p>{pelicula.release_date}</p>
+            <Link to={`${pelicula.id}`}>Ir a mas informacion</Link>
 
           </div>
         )
