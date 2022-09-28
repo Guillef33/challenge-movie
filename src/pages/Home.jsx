@@ -8,11 +8,22 @@ import axios from 'axios';
 import { MovieContext } from '../components/Context/MovieContext';
 
 function Home() {
+   const {
+    searchItems,        
+    moviesResults,
+    setMoviesResults,
+    showResults,
+    setShowResults,
+        searchInput,
+        setSearchInput,
+        movies, 
+        setMovies
+
+  } = useContext(MovieContext);
 
 
   let navigate = useNavigate();
 
-  const [movies, setMovies] =  useState([])
 
   useEffect ( () => {
 
@@ -23,25 +34,17 @@ function Home() {
   }
   }, [])
 
-useEffect ( () => {
-   axios.get('https://api.themoviedb.org/3/discover/movie?api_key=2537ae3e68852b1452859cf56773a0b4&sort_by=release_date.desc')
-   .then(res => setMovies(res.data.results))
-  }, [])
-
-
   return (
     <>
-    <Search movies={movies}/>
-      <ListContainer   movies={movies} />
+    <Search movies={movies} searchItems={searchItems} setSearchInput={setSearchInput}/>
 
-
-    {/* {showResults ? 
-    (     <ListContainer   movies={moviesResults} showResults={showResults}/>
+    {showResults ? 
+    (     <ListContainer   movies={moviesResults} />
 ) : 
-    (     <ListContainer   movies={movies} showResults={showResults}/>
+    (     <ListContainer   movies={movies} />
 )
-} */}
-    </>
+}
+    </> 
   )
 }
 
