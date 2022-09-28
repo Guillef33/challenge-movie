@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-import axios, { Axios } from 'axios'
+import './List.css'
+
+import axios from 'axios'
 
 function ListContainer() {
   let navigate = useNavigate();
@@ -13,7 +15,6 @@ function ListContainer() {
   useEffect ( () => {
 
   const token = localStorage.getItem('token')
-  // console.log(token)
  
   if (token === null ) {
     navigate('/')
@@ -27,28 +28,44 @@ function ListContainer() {
   }, [])
   // }
 
-  const getLatestMovies = () => {
-    useEffect ( () => {
-   axios.get('https://api.themoviedb.org/3/discover/movie?api_key=2537ae3e68852b1452859cf56773a0b4')
-   .then(res => setLatest(res.data))
+  // const getLatestMovies = () => {
+useEffect ( () => {
+   axios.get('https://api.themoviedb.org/3/discover/movie?api_key=2537ae3e68852b1452859cf56773a0b4&sort_by=release_date.desc')
+   .then(res => setLatest(res.data.results))
   }, [])
-  }
+  // }
 
+  console.log(latest)
 
-
-  console.log(generos)
+  const baseURL = "https://image.tmdb.org/t/p/w500/"
 
   return (
 
     <>
     <h1>Conoce todos nuestros generos</h1>
-    <ul>
+    <ul className='container-list'>
         {generos.map(genero => {
         return (
           <li key={genero.id}>{genero.name}</li>
         )
       })} 
     </ul>
+
+      <div  className='container-list'>
+         {latest.map(pelicula => {
+        return (
+          <div>
+            <h1 key={pelicula.id}>{pelicula.title}</h1>
+            <img src={baseURL + pelicula.poster_path} alt='poster-path' />
+            <p>{pelicula.vote_count}</p>
+            <p>{pelicula.overview}</p>
+                        <p>{pelicula.release_date}</p>
+
+          </div>
+        )
+         })} 
+      </div>
+ 
     </>
   )
 }
